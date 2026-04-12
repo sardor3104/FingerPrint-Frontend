@@ -1,6 +1,6 @@
 import axiosInstance from './axiosInstance'
 
-const WS_BASE = (import.meta.env.VITE_API_URL || 'http://34.229.253.106:8000/api/v1')
+const WS_BASE = (import.meta.env.VITE_API_URL || 'https://sardor-attendance.duckdns.org/api/v1')
   .replace('http://', 'ws://')
   .replace('https://', 'wss://')
 
