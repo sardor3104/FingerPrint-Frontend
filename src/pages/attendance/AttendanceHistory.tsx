@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { attendanceApi, AttendanceHistoryItem } from '@/api/attendance'
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
+import { convertToUzbekTime } from '@/lib/date-utils'
 import {
   History,
   Search,
@@ -59,7 +60,10 @@ const AttendanceHistory = () => {
     if (history.length === 0) { toast.info('Eksport qilish uchun ma\'lumot yo\'q'); return }
     const rows = [
       ['Sana', 'Turi', 'Vaqt', 'Status'],
-      ...history.map((r) => [r.date, r.type, r.time, r.status])
+      ...history.map((r) => {
+        const adjusted = convertToUzbekTime(r.date, r.time)
+        return [adjusted.date, r.type, adjusted.time, r.status]
+      })
     ]
     const csv = rows.map((r) => r.join(',')).join('\n')
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
@@ -141,23 +145,25 @@ const AttendanceHistory = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y">
-                    {filtered.map((row) => (
-                      <tr key={row.id} className="hover:bg-accent/10 transition-colors">
-                        <td className="py-4 px-4">
-                          <div className="flex items-center space-x-2">
-                            <CalendarIcon size={14} className="text-primary/60" />
-                            <span className="font-medium">{row.date}</span>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4">
-                          <div className="flex items-center space-x-2">
-                            {getIcon(row.type)}
-                            <span>{row.type}</span>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4 text-muted-foreground font-medium">
-                          {row.time}
-                        </td>
+                    {filtered.map((row) => {
+                      const adjusted = convertToUzbekTime(row.date, row.time)
+                      return (
+                        <tr key={row.id} className="hover:bg-accent/10 transition-colors">
+                          <td className="py-4 px-4">
+                            <div className="flex items-center space-x-2">
+                              <CalendarIcon size={14} className="text-primary/60" />
+                              <span className="font-medium">{adjusted.date}</span>
+                            </div>
+                          </td>
+                          <td className="py-4 px-4">
+                            <div className="flex items-center space-x-2">
+                              {getIcon(row.type)}
+                              <span>{row.type}</span>
+                            </div>
+                          </td>
+                          <td className="py-4 px-4 text-muted-foreground font-medium">
+                            {adjusted.time}
+                          </td>
                         <td className="py-4 px-4">
                           <span className={cn(
                             'px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase',

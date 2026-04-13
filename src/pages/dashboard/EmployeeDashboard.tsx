@@ -23,6 +23,8 @@ import { toast } from 'sonner'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, LineChart, Line, CartesianGrid
 } from 'recharts'
+import { convertToUzbekTime } from '@/lib/date-utils'
+import { format } from 'date-fns'
 
 const EmployeeDashboard = () => {
   const { user } = useAuthStore()
@@ -99,7 +101,9 @@ const EmployeeDashboard = () => {
     {
       id: 'last_check_in',
       name: 'O\'xirgi Check-in',
-      value: statsData?.last_check_in || '--:--',
+      value: statsData?.last_check_in 
+        ? convertToUzbekTime(format(new Date(), 'MMM dd'), statsData.last_check_in).time 
+        : '--:--',
       icon: Clock,
       color: 'text-blue-500',
       clickable: false
@@ -206,7 +210,12 @@ const EmployeeDashboard = () => {
                     </div>
                     <div>
                       <p className="text-sm font-medium">{activity.type}</p>
-                      <p className="text-xs text-muted-foreground">{activity.date} at {activity.time}</p>
+                      {(() => {
+                        const adjusted = convertToUzbekTime(activity.date, activity.time)
+                        return (
+                          <p className="text-xs text-muted-foreground">{adjusted.date} at {adjusted.time}</p>
+                        )
+                      })()}
                     </div>
                   </div>
                   <div className="text-right">
