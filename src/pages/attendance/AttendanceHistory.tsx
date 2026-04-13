@@ -173,7 +173,7 @@ const AttendanceHistory = () => {
                           </span>
                         </td>
                       </tr>
-                    ))}
+                    )})}
                   </tbody>
                 </table>
               </div>
