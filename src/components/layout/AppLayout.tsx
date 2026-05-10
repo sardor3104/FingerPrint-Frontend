@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   
   const getPageTitle = (pathname: string) => {
     const titles: Record<string, string> = {
@@ -20,11 +22,11 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="flex h-screen bg-background overflow-hidden">
-      <Sidebar />
-      <div className="flex flex-col flex-1">
-        <Navbar title={getPageTitle(location.pathname)} />
-        <main className="flex-1 overflow-y-auto p-8 space-y-6">
+    <div className="flex h-screen bg-background overflow-hidden relative">
+      <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+      <div className="flex flex-col flex-1 w-full min-w-0">
+        <Navbar title={getPageTitle(location.pathname)} onMenuClick={() => setIsSidebarOpen(true)} />
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6">
           {children}
         </main>
       </div>

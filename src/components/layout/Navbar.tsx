@@ -1,18 +1,31 @@
 import { useAuthStore } from '@/store/authStore'
-import { Bell, Search, User } from 'lucide-react'
+import { Bell, Search, User, Menu } from 'lucide-react'
 
-const Navbar = ({ title }: { title: string }) => {
+interface NavbarProps {
+  title: string
+  onMenuClick: () => void
+}
+
+const Navbar = ({ title, onMenuClick }: NavbarProps) => {
   const { user } = useAuthStore()
 
   return (
-    <header className="h-16 border-b bg-card px-8 flex items-center justify-between">
-      <h1 className="text-xl font-semibold">{title}</h1>
+    <header className="h-16 border-b bg-card px-4 md:px-8 flex items-center justify-between">
+      <div className="flex items-center">
+        <button 
+          className="mr-3 md:hidden p-2 rounded-md hover:bg-accent text-muted-foreground" 
+          onClick={onMenuClick}
+        >
+          <Menu className="h-6 w-6" />
+        </button>
+        <h1 className="text-xl font-semibold">{title}</h1>
+      </div>
       
       <div className="flex items-center space-x-6">
         <div className="relative hidden md:block">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input 
-            className="pl-10 h-10 w-64 rounded-full border bg-accent/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            className="pl-10 h-10 w-48 lg:w-64 rounded-full border bg-accent/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Search activities..."
           />
         </div>

@@ -9,11 +9,18 @@ import {
   ShieldCheck, 
   Users, 
   BarChart3,
+  BarChart3,
   Settings,
-  LogOut
+  LogOut,
+  X
 } from 'lucide-react'
 
-const Sidebar = () => {
+interface SidebarProps {
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+}
+
+const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const location = useLocation()
   const { user, logout } = useAuthStore()
 
@@ -34,11 +41,28 @@ const Sidebar = () => {
   const isActive = (path: string) => location.pathname === path
 
   return (
-    <div className="flex h-full flex-col bg-card border-r w-64">
-      <div className="flex h-16 items-center px-6 border-b">
-        <Fingerprint className="h-8 w-8 text-primary mr-2" />
-        <span className="text-lg font-bold tracking-tight">XAVFSIZ KIRISH</span>
-      </div>
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-black/50 md:hidden" 
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+      
+      <div className={cn(
+        "fixed inset-y-0 left-0 z-50 w-64 bg-card border-r flex flex-col transition-transform duration-300 md:relative md:translate-x-0",
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
+        <div className="flex h-16 items-center px-6 border-b justify-between">
+          <div className="flex items-center">
+            <Fingerprint className="h-8 w-8 text-primary mr-2" />
+            <span className="text-lg font-bold tracking-tight">XAVFSIZ KIRISH</span>
+          </div>
+          <button className="md:hidden text-muted-foreground hover:text-foreground" onClick={() => setIsOpen(false)}>
+            <X className="h-5 w-5" />
+          </button>
+        </div>
       
       <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
         {filteredNavigation.map((item) => (
@@ -74,7 +98,8 @@ const Sidebar = () => {
           Chiqish
         </button>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 
