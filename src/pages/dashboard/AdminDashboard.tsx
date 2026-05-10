@@ -70,8 +70,8 @@ const AdminDashboard = () => {
 
   // Mock alerts
   const alerts = [
-    { id: 1, type: 'Failed Attempt', message: 'Failed biometric match in Sector B', time: '10 mins ago', severity: 'high' },
-    { id: 2, type: 'New Registration', message: 'New employee request (ID: 105)', time: '2 hours ago', severity: 'low' },
+    { id: 1, type: 'Muvaffaqiyatsiz urinish', message: 'B sektorida biometrik moslashuv xatosi', time: '10 daqiqa oldin', severity: 'high' },
+    { id: 2, type: 'Yangi ro\'yxatdan o\'tish', message: 'Yangi xodim so\'rovi (ID: 105)', time: '2 soat oldin', severity: 'low' },
   ]
 
   const fetchEmployees = async () => {
@@ -264,10 +264,10 @@ const AdminDashboard = () => {
         <>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 relative">
             {[
-              { label: 'Total Employees', value: employees.length, icon: Users, color: 'text-blue-500' },
-              { label: 'Present Today', value: '-', icon: UserCheck, color: 'text-green-500' },
-              { label: 'Security Alerts', value: '2', icon: ShieldAlert, color: 'text-red-500' },
-              { label: 'Active Sessions', value: '-', icon: Activity, color: 'text-purple-500' },
+              { label: 'Jami xodimlar', value: employees.length, icon: Users, color: 'text-blue-500' },
+              { label: 'Bugun kelganlar', value: '-', icon: UserCheck, color: 'text-green-500' },
+              { label: 'Xavfsizlik ogohlantirishlari', value: '2', icon: ShieldAlert, color: 'text-red-500' },
+              { label: 'Faol seanslar', value: '-', icon: Activity, color: 'text-purple-500' },
             ].map((stat, i) => (
               <Card key={i} className="border-primary/10">
                 <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
@@ -499,7 +499,7 @@ const AdminDashboard = () => {
               <p>Parolingizni muntazam ravishda o'zgartirib turish tavsiya etiladi.</p>
               <p>Kamida 8 tadan ortiq belgi, raqam va maxsus belgilardan foydalaning.</p>
               <div className="pt-2">
-                <Button variant="outline" className="w-full text-xs" onClick={() => toast.info("Fingerprint enrollment page under construction")}>
+                <Button variant="outline" className="w-full text-xs" onClick={() => toast.info("Barmoq izini kiritish sahifasi ishlab chiqilmoqda")}>
                   <Fingerprint className="mr-2 h-4 w-4" /> Barmoq izini yangilash
                 </Button>
               </div>

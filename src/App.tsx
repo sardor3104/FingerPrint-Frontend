@@ -29,7 +29,7 @@ const RootRedirect = () => {
 function App() {
   return (
     <Router>
-      <Suspense fallback={<div className="h-screen w-full flex items-center justify-center bg-background text-primary">Loading...</div>}>
+      <Suspense fallback={<div className="h-screen w-full flex items-center justify-center bg-background text-primary">Yuklanmoqda...</div>}>
         <Routes>
           {/* Public Routes */}
           <Route path="/login" element={<LoginPage />} />

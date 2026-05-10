@@ -47,9 +47,9 @@ const ManagerDashboard = () => {
   const pendingCount = requests.filter(r => r.status === 'pending').length
 
   const stats = [
-    { label: 'Pending Approvals', value: loading ? '-' : pendingCount.toString(), color: 'text-yellow-500' },
-    { label: 'Team Attendance', value: '92%', color: 'text-green-500' },
-    { label: 'Late Arrivals', value: '2', color: 'text-red-500' },
+    { label: 'Kutilayotgan tasdiqlar', value: loading ? '-' : pendingCount.toString(), color: 'text-yellow-500' },
+    { label: 'Jamoa davomati', value: '92%', color: 'text-green-500' },
+    { label: 'Kechikishlar', value: '2', color: 'text-red-500' },
   ]
 
   const formatDateRange = (start: string, end: string) => {
@@ -79,8 +79,8 @@ const ManagerDashboard = () => {
 
       <Card className="border-primary/10">
         <CardHeader>
-          <CardTitle>Team Requests</CardTitle>
-          <CardDescription>Review and approve pending requests from your team members</CardDescription>
+          <CardTitle>Jamoa so'rovlari</CardTitle>
+          <CardDescription>Jamoangizdan kelgan kutilayotgan so'rovlarni ko'rib chiqing va tasdiqlang</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -108,10 +108,10 @@ const ManagerDashboard = () => {
                     {req.status === 'pending' ? (
                       <>
                         <Button onClick={() => handleUpdateStatus(req.id, 'denied')} variant="outline" size="sm" className="text-destructive border-destructive/20 hover:bg-destructive/10">
-                          <XCircle className="mr-2 h-4 w-4" /> Reject
+                          <XCircle className="mr-2 h-4 w-4" /> Rad etish
                         </Button>
                         <Button onClick={() => handleUpdateStatus(req.id, 'approved')} size="sm" className="bg-green-600 hover:bg-green-700">
-                          <CheckCircle className="mr-2 h-4 w-4" /> Approve
+                          <CheckCircle className="mr-2 h-4 w-4" /> Tasdiqlash
                         </Button>
                       </>
                     ) : (
@@ -138,23 +138,23 @@ const ManagerDashboard = () => {
       <div className="grid gap-6 md:grid-cols-2 mt-8">
         <Card className="border-primary/10">
           <CardHeader>
-            <CardTitle className="text-base flex items-center"><Calendar className="mr-2 h-4 w-4" /> Team Calendar</CardTitle>
+            <CardTitle className="text-base flex items-center"><Calendar className="mr-2 h-4 w-4" /> Jamoa taqvimi</CardTitle>
           </CardHeader>
           <CardContent className="h-48 flex items-center justify-center bg-accent/10 rounded-lg text-muted-foreground italic">
-            Calendar View Integrated Here
+            Taqvim ko'rinishi shu yerda bo'ladi
           </CardContent>
         </Card>
         <Card className="border-primary/10">
           <CardHeader>
-            <CardTitle className="text-base flex items-center"><FileText className="mr-2 h-4 w-4" /> Quick Reports</CardTitle>
+            <CardTitle className="text-base flex items-center"><FileText className="mr-2 h-4 w-4" /> Tezkor hisobotlar</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             <Button variant="ghost" className="w-full justify-between text-sm h-12 border border-dashed rounded-xl px-4">
-              <span>Weekly Team Attendance Summary</span>
+              <span>Haftalik jamoa davomati xulosasi</span>
               <Mail className="h-4 w-4 text-primary" />
             </Button>
             <Button variant="ghost" className="w-full justify-between text-sm h-12 border border-dashed rounded-xl px-4">
-              <span>System Compliance Audit (Current Month)</span>
+              <span>Tizim auditi (Joriy oy)</span>
               <Clock className="h-4 w-4 text-primary" />
             </Button>
           </CardContent>

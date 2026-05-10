@@ -187,7 +187,7 @@ const EmployeeDashboard = () => {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7 mt-6">
         <Card className="md:col-span-4 border-primary/10">
           <CardHeader>
-            <CardTitle>Attendance History</CardTitle>
+            <CardTitle>Davomat tarixi</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -230,7 +230,7 @@ const EmployeeDashboard = () => {
               ))}
 
               <Button variant="outline" className="w-full" asChild>
-                <Link to="/attendance">View Full History</Link>
+                <Link to="/attendance">To'liq tarixni ko'rish</Link>
               </Button>
             </div>
           </CardContent>
@@ -238,7 +238,7 @@ const EmployeeDashboard = () => {
 
         <Card className="md:col-span-3 border-primary/10 bg-primary/5 flex flex-col">
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
+            <CardTitle>Tezkor amallar</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 flex-1">
             <div className="p-6 border-2 border-dashed border-primary/30 rounded-xl flex flex-col items-center justify-center text-center space-y-4 hover:border-primary transition-colors cursor-pointer group">
@@ -246,18 +246,18 @@ const EmployeeDashboard = () => {
                 <Fingerprint className="h-12 w-12 text-primary" />
               </div>
               <div>
-                <h3 className="font-bold">Verify Identity</h3>
-                <p className="text-xs text-muted-foreground">Scan your fingerprint to check-in or out for the day</p>
+                <h3 className="font-bold">Shaxsni tasdiqlash</h3>
+                <p className="text-xs text-muted-foreground">Kunlik kirish yoki chiqish uchun barmoq izingizni skanerlang</p>
               </div>
               <Button asChild>
-                <Link to="/biometric">Open Scanner</Link>
+                <Link to="/biometric">Skanerni ochish</Link>
               </Button>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <Link to="/chat" className="flex items-center justify-center p-3 rounded-lg bg-card border hover:border-primary transition-colors cursor-pointer group space-x-2">
                 <MessageSquare className="h-4 w-4 text-primary group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium">Team Chat</span>
+                <span className="text-sm font-medium">Jamoa chati</span>
               </Link>
               <div 
                 onClick={() => setShowRequestModal(true)} 

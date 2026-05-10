@@ -18,13 +18,13 @@ const Sidebar = () => {
   const { user, logout } = useAuthStore()
 
   const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, roles: ['employee', 'manager', 'admin'] },
-    { name: 'History', href: '/attendance', icon: History, roles: ['employee', 'manager', 'admin'] },
+    { name: 'Bosh sahifa', href: '/dashboard', icon: LayoutDashboard, roles: ['employee', 'manager', 'admin'] },
+    { name: 'Tarix', href: '/attendance', icon: History, roles: ['employee', 'manager', 'admin'] },
     { name: 'Chat', href: '/chat', icon: MessageSquare, roles: ['employee', 'manager', 'admin'] },
-    { name: 'Biometric', href: '/biometric', icon: Fingerprint, roles: ['employee', 'manager', 'admin'] },
-    { name: 'Manager Portal', href: '/manager', icon: ShieldCheck, roles: ['manager', 'admin'] },
+    { name: 'Biometriya', href: '/biometric', icon: Fingerprint, roles: ['employee', 'manager', 'admin'] },
+    { name: 'Menejer Portali', href: '/manager', icon: ShieldCheck, roles: ['manager', 'admin'] },
     { name: 'Admin Panel', href: '/admin', icon: Users, roles: ['admin'] },
-    { name: 'Analytics', href: '/analytics', icon: BarChart3, roles: ['admin'] },
+    { name: 'Analitika', href: '/analytics', icon: BarChart3, roles: ['admin'] },
   ]
 
   const filteredNavigation = navigation.filter(item => 
@@ -64,14 +64,14 @@ const Sidebar = () => {
           className="flex items-center px-3 py-2 text-sm font-medium rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground"
         >
           <Settings className="mr-3 h-5 w-5" />
-          Settings
+          Sozlamalar
         </Link>
         <button
           onClick={logout}
           className="flex w-full items-center px-3 py-2 text-sm font-medium rounded-md text-destructive hover:bg-destructive/10"
         >
           <LogOut className="mr-3 h-5 w-5" />
-          Logout
+          Chiqish
         </button>
       </div>
     </div>
