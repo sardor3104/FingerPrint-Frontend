@@ -46,13 +46,13 @@ const AttendanceHistory = () => {
   )
 
   const getIcon = (type: string) => {
-    if (type === 'Check-in') return <LogIn size={14} className="text-blue-500" />
-    if (type === 'Check-out') return <LogOut size={14} className="text-purple-500" />
+    if (type === 'Check-in' || type === 'Kelish') return <LogIn size={14} className="text-blue-500" />
+    if (type === 'Check-out' || type === 'Ketish') return <LogOut size={14} className="text-purple-500" />
     return <AlertTriangle size={14} className="text-red-500" />
   }
 
   const getStatusStyle = (status: string) =>
-    status === 'Success'
+    status === 'Success' || status === 'Muvaffaqiyatli'
       ? 'bg-green-500/10 text-green-600'
       : 'bg-red-500/10 text-red-500'
 
@@ -158,7 +158,7 @@ const AttendanceHistory = () => {
                           <td className="py-4 px-4">
                             <div className="flex items-center space-x-2">
                               {getIcon(row.type)}
-                              <span>{row.type}</span>
+                              <span>{row.type === 'Check-in' ? 'Kelish' : row.type === 'Check-out' ? 'Ketish' : row.type}</span>
                             </div>
                           </td>
                           <td className="py-4 px-4 text-muted-foreground font-medium">
@@ -169,7 +169,7 @@ const AttendanceHistory = () => {
                             'px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase',
                             getStatusStyle(row.status)
                           )}>
-                            {row.status}
+                            {row.status === 'Success' ? 'Muvaffaqiyatli' : row.status === 'Failed' ? 'Muvaffaqiyatsiz' : row.status}
                           </span>
                         </td>
                       </tr>

@@ -204,12 +204,12 @@ const EmployeeDashboard = () => {
                   <div className="flex items-center space-x-4">
                     <div className={cn(
                       "p-2 rounded-full",
-                      activity.type === 'Check-in' ? "bg-blue-500/10 text-blue-500" : "bg-purple-500/10 text-purple-500"
+                      activity.type === 'Check-in' || activity.type === 'Kelish' ? "bg-blue-500/10 text-blue-500" : "bg-purple-500/10 text-purple-500"
                     )}>
-                      {activity.type === 'Check-in' ? <Fingerprint size={18} /> : <Clock size={18} />}
+                      {activity.type === 'Check-in' || activity.type === 'Kelish' ? <Fingerprint size={18} /> : <Clock size={18} />}
                     </div>
                     <div>
-                      <p className="text-sm font-medium">{activity.type}</p>
+                      <p className="text-sm font-medium">{activity.type === 'Check-in' ? 'Kelish' : activity.type === 'Check-out' ? 'Ketish' : activity.type}</p>
                       {(() => {
                         const adjusted = convertToUzbekTime(activity.date, activity.time)
                         return (
@@ -221,9 +221,9 @@ const EmployeeDashboard = () => {
                   <div className="text-right">
                     <span className={cn(
                       "px-2.5 py-0.5 rounded-full text-xs font-semibold",
-                      activity.status === 'Success' ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"
+                      activity.status === 'Success' || activity.status === 'Muvaffaqiyatli' ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"
                     )}>
-                      {activity.status}
+                      {activity.status === 'Success' ? 'Muvaffaqiyatli' : activity.status === 'Failed' ? 'Muvaffaqiyatsiz' : activity.status}
                     </span>
                   </div>
                 </div>

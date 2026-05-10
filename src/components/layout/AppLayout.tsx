@@ -7,16 +7,16 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
   
   const getPageTitle = (pathname: string) => {
     const titles: Record<string, string> = {
-      '/dashboard': 'Dashboard Overview',
-      '/attendance': 'Attendance History',
-      '/chat': 'Internal Communications',
-      '/biometric': 'Biometric Verification',
-      '/manager': 'Permission Management',
-      '/admin': 'Employee Administration',
-      '/analytics': 'System Analytics',
-      '/settings': 'Account Settings',
+      '/dashboard': 'Bosh sahifa',
+      '/attendance': 'Davomat tarixi',
+      '/chat': 'Ichki yozishmalar',
+      '/biometric': 'Biometrik tasdiqlash',
+      '/manager': 'Ruxsatlarni boshqarish',
+      '/admin': 'Xodimlarni boshqarish',
+      '/analytics': 'Tizim analitikasi',
+      '/settings': 'Hisob sozlamalari',
     }
-    return titles[pathname] || 'Welcome back'
+    return titles[pathname] || 'Xush kelibsiz'
   }
 
   return (

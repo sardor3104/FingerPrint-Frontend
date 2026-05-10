@@ -37,7 +37,7 @@ const Sidebar = () => {
     <div className="flex h-full flex-col bg-card border-r w-64">
       <div className="flex h-16 items-center px-6 border-b">
         <Fingerprint className="h-8 w-8 text-primary mr-2" />
-        <span className="text-lg font-bold tracking-tight">SECURE ACCESS</span>
+        <span className="text-lg font-bold tracking-tight">XAVFSIZ KIRISH</span>
       </div>
       
       <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
