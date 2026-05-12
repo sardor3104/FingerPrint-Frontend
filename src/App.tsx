@@ -12,6 +12,7 @@ const ResetPasswordPage = lazy(() => import('./pages/auth/ResetPasswordPage'))
 const EmployeeDashboard = lazy(() => import('./pages/dashboard/EmployeeDashboard'))
 const ManagerDashboard = lazy(() => import('./pages/dashboard/ManagerDashboard'))
 const AdminDashboard = lazy(() => import('./pages/dashboard/AdminDashboard'))
+const AnalyticsDashboard = lazy(() => import('./pages/dashboard/AnalyticsDashboard'))
 
 // Feature Pages (Lazy)
 const BiometricVerifyPage = lazy(() => import('./pages/biometric/BiometricVerifyPage'))
@@ -52,6 +53,7 @@ function App() {
           {/* Admin Only Routes */}
           <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/analytics" element={<AnalyticsDashboard />} />
           </Route>
 
           {/* Redirects */}
