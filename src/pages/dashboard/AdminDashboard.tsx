@@ -274,7 +274,7 @@ const AdminDashboard = () => {
       let checkInTime: Date | null = null;
       const currentHour = new Date().getHours();
 
-      empLogs.forEach(log => {
+      for (const log of empLogs) {
         const time = new Date(log.timestamp);
         if (log.event_type === 'check_in') {
           checkInTime = time;
@@ -282,7 +282,7 @@ const AdminDashboard = () => {
           intervals.push({ start: checkInTime.getHours(), end: time.getHours() });
           checkInTime = null;
         }
-      });
+      }
 
       if (checkInTime) {
         intervals.push({ start: checkInTime.getHours(), end: currentHour });
