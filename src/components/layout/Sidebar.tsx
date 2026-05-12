@@ -9,7 +9,6 @@ import {
   ShieldCheck, 
   Users, 
   BarChart3,
-  BarChart3,
   Settings,
   LogOut,
   X

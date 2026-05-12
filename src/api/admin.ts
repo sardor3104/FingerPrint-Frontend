@@ -39,6 +39,19 @@ export interface OrganizationLocationUpdate {
   radius_meters: number
 }
 
+export interface AttendanceLog {
+  _id?: string
+  id?: string
+  employee_id: any
+  timestamp: string
+  event_type: 'check_in' | 'check_out' | 'failed_attempt'
+  device_id?: string
+  ip_address?: string
+  attempt_latitude?: number
+  attempt_longitude?: number
+  success: boolean
+}
+
 export const adminApi = {
   getEmployees: async () => {
     const response = await axiosInstance.get<Employee[]>('/admin/employees')
@@ -62,6 +75,11 @@ export const adminApi = {
 
   updateOrgLocation: async (data: OrganizationLocationUpdate) => {
     const response = await axiosInstance.post<OrganizationLocation>('/admin/organization-location', data)
+    return response.data
+  },
+
+  getDailyAnalytics: async () => {
+    const response = await axiosInstance.get<AttendanceLog[]>('/admin/analytics/daily')
     return response.data
   }
 }
