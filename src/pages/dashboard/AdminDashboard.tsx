@@ -41,7 +41,8 @@ const AdminDashboard = () => {
     phone: '',
     email: '',
     password: '',
-    role: 'employee'
+    role: 'employee',
+    fingerprint_image_base64: ''
   })
 
   const [editForm, setEditForm] = useState({
@@ -118,13 +119,24 @@ const AdminDashboard = () => {
     fetchLocation()
   }, [])
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setAddForm({ ...addForm, fingerprint_image_base64: reader.result as string })
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
   const handleAddSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       await authApi.register(addForm)
       toast.success('Foydalanuvchi muvaffaqiyatli qo\'shildi')
       setIsAddOpen(false)
-      setAddForm({ jshshir: '', full_name: '', birth_date: '', phone: '', email: '', password: '', role: 'employee' })
+      setAddForm({ jshshir: '', full_name: '', birth_date: '', phone: '', email: '', password: '', role: 'employee', fingerprint_image_base64: '' })
       fetchEmployees()
     } catch (e: any) {
       const detail = e.response?.data?.detail;
@@ -606,6 +618,11 @@ const AdminDashboard = () => {
                 <div className="space-y-1">
                   <label className="text-sm font-medium text-bold">Parol (Vaqtinchalik)</label>
                   <Input required type="password" value={addForm.password} onChange={e => setAddForm({ ...addForm, password: e.target.value })} placeholder="******" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-sm font-medium">Barmoq izi rasmi (Ixtiyoriy)</label>
+                  <Input type="file" accept="image/*" onChange={handleFileUpload} />
+                  <p className="text-[10px] text-muted-foreground">Barmoq izi skaner qilingan rasmni yuklash (ixtiyoriy).</p>
                 </div>
 
                 <div className="flex justify-end space-x-2 pt-4">
