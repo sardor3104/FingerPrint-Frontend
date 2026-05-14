@@ -241,18 +241,6 @@ const EmployeeDashboard = () => {
             <CardTitle>Tezkor amallar</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 flex-1">
-            <div className="p-6 border-2 border-dashed border-primary/30 rounded-xl flex flex-col items-center justify-center text-center space-y-4 hover:border-primary transition-colors cursor-pointer group">
-              <div className="p-4 bg-primary/10 rounded-full group-hover:scale-110 transition-transform">
-                <Fingerprint className="h-12 w-12 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-bold">Shaxsni tasdiqlash</h3>
-                <p className="text-xs text-muted-foreground">Kunlik kirish yoki chiqish uchun barmoq izingizni skanerlang</p>
-              </div>
-              <Button asChild>
-                <Link to="/biometric">Skanerni ochish</Link>
-              </Button>
-            </div>
 
             <div className="grid grid-cols-2 gap-3">
               <Link to="/chat" className="flex items-center justify-center p-3 rounded-lg bg-card border hover:border-primary transition-colors cursor-pointer group space-x-2">

@@ -12,7 +12,6 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
       '/dashboard': 'Bosh sahifa',
       '/attendance': 'Davomat tarixi',
       '/chat': 'Ichki yozishmalar',
-      '/biometric': 'Biometrik tasdiqlash',
       '/manager': 'Ruxsatlarni boshqarish',
       '/admin': 'Xodimlarni boshqarish',
       '/analytics': 'Tizim analitikasi',

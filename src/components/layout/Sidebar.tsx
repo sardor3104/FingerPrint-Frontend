@@ -27,7 +27,6 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     { name: 'Bosh sahifa', href: '/dashboard', icon: LayoutDashboard, roles: ['employee', 'manager', 'admin'] },
     { name: 'Tarix', href: '/attendance', icon: History, roles: ['employee', 'manager', 'admin'] },
     { name: 'Chat', href: '/chat', icon: MessageSquare, roles: ['employee', 'manager', 'admin'] },
-    { name: 'Biometriya', href: '/biometric', icon: Fingerprint, roles: ['employee', 'manager', 'admin'] },
     { name: 'Menejer Portali', href: '/manager', icon: ShieldCheck, roles: ['manager', 'admin'] },
     { name: 'Admin Panel', href: '/admin', icon: Users, roles: ['admin'] },
     { name: 'Analitika', href: '/analytics', icon: BarChart3, roles: ['admin'] },

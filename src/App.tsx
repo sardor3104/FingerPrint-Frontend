@@ -15,7 +15,6 @@ const AdminDashboard = lazy(() => import('./pages/dashboard/AdminDashboard'))
 const AnalyticsDashboard = lazy(() => import('./pages/dashboard/AnalyticsDashboard'))
 
 // Feature Pages (Lazy)
-const BiometricVerifyPage = lazy(() => import('./pages/biometric/BiometricVerifyPage'))
 const AttendanceHistory = lazy(() => import('./pages/attendance/AttendanceHistory'))
 const ChatInterface = lazy(() => import('./pages/chat/ChatInterface'))
 
@@ -42,7 +41,6 @@ function App() {
             <Route path="/dashboard" element={<EmployeeDashboard />} />
             <Route path="/attendance" element={<AttendanceHistory />} />
             <Route path="/chat" element={<ChatInterface />} />
-            <Route path="/biometric" element={<BiometricVerifyPage />} />
           </Route>
 
           {/* Manager Only Routes */}
