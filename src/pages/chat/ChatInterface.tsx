@@ -7,8 +7,8 @@ import { useAuthStore } from '@/store/authStore'
 import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
 import {
-  Send, Search, Trash2, Paperclip, Plus,
-  Loader2, Wifi, WifiOff, X, MessageSquare
+  Send, Search, Trash2, Paperclip,
+  Loader2, Wifi, WifiOff, MessageSquare
 } from 'lucide-react'
 import {
   chatApi,
@@ -34,9 +34,6 @@ const ChatInterface = () => {
   const [loadingContacts, setLoadingContacts] = useState(true)
   const [sendingMsg, setSendingMsg] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [showNewChat, setShowNewChat] = useState(false)
-  const [newChatTopic, setNewChatTopic] = useState('')
-  const [creatingChat, setCreatingChat] = useState(false)
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -126,26 +123,6 @@ const ChatInterface = () => {
     connectWS(chat)
   }
 
-  const handleCreateChat = async (contact: Contact) => {
-    if (!newChatTopic.trim()) {
-      toast.error('Mavzu kiriting')
-      return
-    }
-    setCreatingChat(true)
-    try {
-      const chat = await chatApi.createChat(contact.id, newChatTopic)
-      setMyChats((prev) => [chat, ...prev])
-      setNewChatTopic('')
-      setShowNewChat(false)
-      handleSelectChat(chat)
-      toast.success('Yangi chat yaratildi!')
-    } catch (e: any) {
-      toast.error(e?.response?.data?.detail || 'Chat yaratishda xato')
-    } finally {
-      setCreatingChat(false)
-    }
-  }
-
   const handleSend = async () => {
     if (!message.trim() || !activeChat) return
     setSendingMsg(true)
@@ -224,15 +201,6 @@ const ChatInterface = () => {
           <CardHeader className="pb-3 flex-shrink-0">
             <div className="flex items-center justify-between mb-3">
               <CardTitle className="text-base">Xabarlar</CardTitle>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8"
-                title="Yangi chat"
-                onClick={() => setShowNewChat(!showNewChat)}
-              >
-                <Plus size={14} />
-              </Button>
             </div>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
@@ -273,9 +241,6 @@ const ChatInterface = () => {
                       if (existingChat) {
                         handleSelectChat(existingChat)
                         setActiveContact(contact)
-                      } else {
-                        setActiveContact(contact)
-                        setShowNewChat(true)
                       }
                     }}
                   >
@@ -413,51 +378,13 @@ const ChatInterface = () => {
             </div>
           </Card>
         ) : (
-          /* Empty State / New Chat Panel */
+          /* Empty State */
           <Card className="flex-1 border-primary/10 flex flex-col items-center justify-center">
-            {showNewChat && activeContact ? (
-              <div className="w-full max-w-sm p-6 space-y-4">
-                <div className="text-center">
-                  <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl mx-auto mb-3">
-                    {getInitials(activeContact.full_name)}
-                  </div>
-                  <h3 className="font-bold">{activeContact.full_name}</h3>
-                  <p className="text-xs text-muted-foreground capitalize">{activeContact.role}</p>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm font-medium">Yangi chat mavzusi:</p>
-                  <Input
-                    placeholder="Masalan: Ish haqida savol"
-                    value={newChatTopic}
-                    onChange={(e) => setNewChatTopic(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleCreateChat(activeContact)}
-                  />
-                </div>
-                <div className="flex space-x-2">
-                  <Button
-                    variant="outline"
-                    className="flex-1"
-                    onClick={() => { setShowNewChat(false); setActiveContact(null) }}
-                  >
-                    <X size={14} className="mr-1" /> Bekor
-                  </Button>
-                  <Button
-                    className="flex-1"
-                    onClick={() => handleCreateChat(activeContact)}
-                    disabled={creatingChat || !newChatTopic.trim()}
-                  >
-                    {creatingChat ? <Loader2 size={14} className="animate-spin mr-1" /> : null}
-                    Chat yaratish
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <div className="text-center text-muted-foreground space-y-3">
-                <MessageSquare size={56} className="mx-auto opacity-20" />
-                <p className="font-medium">Chat tanlang</p>
-                <p className="text-sm">Chap tarafdagi kontaktni bosing</p>
-              </div>
-            )}
+            <div className="text-center text-muted-foreground space-y-3">
+              <MessageSquare size={56} className="mx-auto opacity-20" />
+              <p className="font-medium">Chat tanlang</p>
+              <p className="text-sm">Chap tarafdagi kontaktni bosing</p>
+            </div>
           </Card>
         )}
       </div>
