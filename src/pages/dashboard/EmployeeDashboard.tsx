@@ -154,7 +154,7 @@ const EmployeeDashboard = () => {
 
   return (
     <AppLayout>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, i) => (
           <Card
             key={i}
@@ -184,8 +184,8 @@ const EmployeeDashboard = () => {
         ))}
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7 mt-6">
-        <Card className="md:col-span-4 border-primary/10">
+      <div className="grid gap-6 grid-cols-1 lg:grid-cols-7 mt-6">
+        <Card className="lg:col-span-4 border-primary/10">
           <CardHeader>
             <CardTitle>Davomat tarixi</CardTitle>
           </CardHeader>
@@ -236,7 +236,7 @@ const EmployeeDashboard = () => {
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-3 border-primary/10 bg-primary/5 flex flex-col">
+        <Card className="lg:col-span-3 border-primary/10 bg-primary/5 flex flex-col">
           <CardHeader>
             <CardTitle>Tezkor amallar</CardTitle>
           </CardHeader>

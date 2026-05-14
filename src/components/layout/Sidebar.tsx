@@ -67,6 +67,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           <Link
             key={item.name}
             to={item.href}
+            onClick={() => setIsOpen(false)}
             className={cn(
               "flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors",
               isActive(item.href)

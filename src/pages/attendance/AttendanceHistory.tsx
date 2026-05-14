@@ -79,7 +79,7 @@ const AttendanceHistory = () => {
   return (
     <AppLayout>
       <div className="flex flex-col space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <Card className="flex-1 border-primary/10 bg-accent/10">
             <CardContent className="p-4 flex items-center space-x-4">
               <div className="p-2 bg-primary/20 rounded-lg text-primary">
@@ -101,9 +101,9 @@ const AttendanceHistory = () => {
         </div>
 
         <Card className="border-primary/10">
-          <CardHeader className="flex flex-row items-center justify-between">
+          <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <CardTitle>Batafsil jurnal</CardTitle>
-            <div className="relative w-64">
+            <div className="relative w-full sm:w-64">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Sana yoki turi bo'yicha..."

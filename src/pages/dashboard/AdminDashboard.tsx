@@ -274,7 +274,7 @@ const AdminDashboard = () => {
 
       {activeTab === 'employees' && (
         <>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 relative">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 relative">
             {[
               { label: 'Jami xodimlar', value: employees.length, icon: Users, color: 'text-blue-500' },
               { label: 'Bugun kelganlar', value: '-', icon: UserCheck, color: 'text-green-500' },
@@ -295,7 +295,7 @@ const AdminDashboard = () => {
 
           <div className="grid gap-6 lg:grid-cols-3 mt-6">
             <Card className="lg:col-span-2 border-primary/10">
-              <CardHeader className="flex flex-row items-center justify-between">
+              <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                   <CardTitle>Xodimlar / Foydalanuvchilar</CardTitle>
                   <CardDescription>Barcha ro'yxatdan o'tgan foydalanuvchilar va ularning ma'lumotlari</CardDescription>
@@ -345,7 +345,7 @@ const AdminDashboard = () => {
                         <th className="text-left font-medium py-3">Foydalanuvchi</th>
                         <th className="text-left font-medium py-3">Rol</th>
                         <th className="text-left font-medium py-3">JSHSHIR</th>
-                        <th className="text-right font-medium py-3">Harakatlar</th>
+                        <th className="text-right font-medium py-3 px-4">Harakatlar</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y">
