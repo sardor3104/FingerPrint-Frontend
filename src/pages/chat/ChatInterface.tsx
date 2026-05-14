@@ -34,6 +34,7 @@ const ChatInterface = () => {
   const [loadingContacts, setLoadingContacts] = useState(true)
   const [sendingMsg, setSendingMsg] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [openingContactId, setOpeningContactId] = useState<string | null>(null)
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -193,6 +194,28 @@ const ChatInterface = () => {
     )
   }
 
+  // Telegram-like: click contact → auto open or create chat silently
+  const handleOpenContact = async (contact: Contact) => {
+    const existingChat = findExistingChat(contact)
+    if (existingChat) {
+      handleSelectChat(existingChat)
+      setActiveContact(contact)
+      return
+    }
+    // Create chat silently without any dialog
+    setOpeningContactId(contact.id)
+    try {
+      const chat = await chatApi.createChat(contact.id)
+      setMyChats((prev) => [chat, ...prev])
+      handleSelectChat(chat)
+      setActiveContact(contact)
+    } catch (e: any) {
+      toast.error(e?.response?.data?.detail || 'Chatni ochishda xato')
+    } finally {
+      setOpeningContactId(null)
+    }
+  }
+
   return (
     <AppLayout>
       <div className="flex h-[calc(100vh-8rem)] gap-4 overflow-hidden">
@@ -237,16 +260,14 @@ const ChatInterface = () => {
                         ? 'bg-primary/10 border border-primary/30'
                         : 'hover:bg-accent/20 border border-transparent'
                     )}
-                    onClick={() => {
-                      if (existingChat) {
-                        handleSelectChat(existingChat)
-                        setActiveContact(contact)
-                      }
-                    }}
+                    onClick={() => handleOpenContact(contact)}
                   >
                     <div className="relative flex-shrink-0">
                       <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-xs text-primary">
-                        {getInitials(contact.full_name)}
+                        {openingContactId === contact.id
+                          ? <Loader2 size={16} className="animate-spin text-primary" />
+                          : getInitials(contact.full_name)
+                        }
                       </div>
                       <div className={cn(
                         "absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-card",
@@ -255,14 +276,7 @@ const ChatInterface = () => {
                       )} />
                     </div>
                     <div className="ml-3 flex-1 overflow-hidden">
-                      <div className="flex justify-between items-center">
-                        <p className="text-sm font-semibold truncate">{contact.full_name}</p>
-                        {existingChat && (
-                          <span className="text-[9px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full font-medium">
-                            Chat bor
-                          </span>
-                        )}
-                      </div>
+                      <p className="text-sm font-semibold truncate">{contact.full_name}</p>
                       <p className="text-[11px] text-muted-foreground capitalize">{contact.role}</p>
                     </div>
                   </div>

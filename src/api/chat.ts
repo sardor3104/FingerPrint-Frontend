@@ -44,8 +44,8 @@ export const chatApi = {
     return res.data
   },
 
-  /** Create a new chat with a manager/admin */
-  createChat: async (managerId: string, topic: string): Promise<ChatRoom> => {
+  /** Create a new chat or return existing chat */
+  createChat: async (managerId: string, topic: string = 'Umumiy suhbat'): Promise<ChatRoom> => {
     const res = await axiosInstance.post<ChatRoom>('/chat/create', {
       manager_id: managerId,
       topic,
