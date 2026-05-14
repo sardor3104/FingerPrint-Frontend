@@ -43,15 +43,14 @@ function App() {
             <Route path="/chat" element={<ChatInterface />} />
           </Route>
 
-          {/* Manager Only Routes */}
           <Route element={<ProtectedRoute allowedRoles={['manager', 'admin']} />}>
             <Route path="/manager" element={<ManagerDashboard />} />
+            <Route path="/analytics" element={<AnalyticsDashboard />} />
           </Route>
 
           {/* Admin Only Routes */}
           <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
             <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/analytics" element={<AnalyticsDashboard />} />
           </Route>
 
           {/* Redirects */}

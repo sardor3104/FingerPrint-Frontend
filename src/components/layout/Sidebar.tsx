@@ -29,7 +29,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     { name: 'Chat', href: '/chat', icon: MessageSquare, roles: ['employee', 'manager', 'admin'] },
     { name: 'Menejer Portali', href: '/manager', icon: ShieldCheck, roles: ['manager', 'admin'] },
     { name: 'Admin Panel', href: '/admin', icon: Users, roles: ['admin'] },
-    { name: 'Analitika', href: '/analytics', icon: BarChart3, roles: ['admin'] },
+    { name: 'Analitika', href: '/analytics', icon: BarChart3, roles: ['manager', 'admin'] },
   ]
 
   const filteredNavigation = navigation.filter(item => 
