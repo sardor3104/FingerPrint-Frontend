@@ -12,8 +12,8 @@ import { useAuthStore } from '@/store/authStore'
 import axiosInstance from '@/api/axiosInstance'
 
 const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.string().email('Elektron pochta manzili noto\'g\'ri'),
+  password: z.string().min(6, 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak'),
 })
 
 type LoginFormValues = z.infer<typeof loginSchema>
@@ -34,7 +34,7 @@ const LoginPage = () => {
       const { user, access_token } = response.data
       
       login(user, access_token)
-      toast.success(`Welcome back, ${user.full_name}!`)
+      toast.success(`Xush kelibsiz, ${user.full_name}!`)
       
       if (user.role === 'admin') {
         navigate('/admin')
@@ -62,9 +62,9 @@ const LoginPage = () => {
               <Fingerprint className="h-10 w-10 text-primary" />
             </div>
           </div>
-          <CardTitle className="text-3xl font-bold tracking-tight">Access Secure</CardTitle>
+          <CardTitle className="text-3xl font-bold tracking-tight">Tizimga kirish</CardTitle>
           <CardDescription>
-            Enter your credentials to access the system
+            Tizimga kirish uchun ma'lumotlaringizni kiriting
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -96,13 +96,13 @@ const LoginPage = () => {
               {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
             </div>
             <div className="flex items-center justify-between">
-              <Link to="/forgot-password" title="Forgot password?" className="text-xs text-primary hover:underline">
-                Forgot password?
+              <Link to="/forgot-password" title="Parolni unutdingizmi?" className="text-xs text-primary hover:underline">
+                Parolni unutdingizmi?
               </Link>
             </div>
             <Button className="w-full relative overflow-hidden group" type="submit" disabled={isLoading}>
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              <span>Sign In</span>
+              <span>Kirish</span>
               <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             </Button>
           </form>

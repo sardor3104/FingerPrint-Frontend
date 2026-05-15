@@ -11,10 +11,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import axiosInstance from '@/api/axiosInstance'
 
 const resetPasswordSchema = z.object({
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  password: z.string().min(6, 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak'),
   confirmPassword: z.string()
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
+  message: "Parollar mos kelmadi",
   path: ["confirmPassword"],
 })
 
@@ -33,7 +33,7 @@ const ResetPasswordPage = () => {
 
   const onSubmit = async (data: ResetPasswordFormValues) => {
     if (!token && process.env.NODE_ENV !== 'development') {
-      toast.error('Invalid or missing reset token.')
+      toast.error('Tiklash tokeni yaroqsiz yoki mavjud emas.')
       return
     }
 
@@ -44,7 +44,7 @@ const ResetPasswordPage = () => {
         new_password: data.password
       })
       setIsSuccess(true)
-      toast.success('Password reset successful!')
+      toast.success('Parol muvaffaqiyatli tiklandi!')
       setTimeout(() => navigate('/login'), 3000)
     } catch (error: any) {
       console.error('Password reset failed:', error)
@@ -72,9 +72,9 @@ const ResetPasswordPage = () => {
                   <KeyRound className="h-10 w-10 text-primary" />
                 </div>
               </div>
-              <CardTitle className="text-3xl font-bold tracking-tight">Set new password</CardTitle>
+              <CardTitle className="text-3xl font-bold tracking-tight">Yangi parolni o'rnating</CardTitle>
               <CardDescription>
-                Choose a strong and secure password.
+                Kuchli va xavfsiz parolni tanlang.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -85,7 +85,7 @@ const ResetPasswordPage = () => {
                     <Input 
                       {...register('password')}
                       className="pl-10" 
-                      placeholder="New password" 
+                      placeholder="Yangi parol" 
                       type="password" 
                       disabled={isLoading}
                     />
@@ -98,7 +98,7 @@ const ResetPasswordPage = () => {
                     <Input 
                       {...register('confirmPassword')}
                       className="pl-10" 
-                      placeholder="Confirm new password" 
+                      placeholder="Yangi parolni tasdiqlang" 
                       type="password" 
                       disabled={isLoading}
                     />
@@ -107,7 +107,7 @@ const ResetPasswordPage = () => {
                 </div>
                 <Button className="w-full relative overflow-hidden group shadow-lg" type="submit" disabled={isLoading}>
                   {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  <span>Reset password</span>
+                  <span>Parolni tiklash</span>
                   <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </Button>
               </form>
@@ -121,19 +121,19 @@ const ResetPasswordPage = () => {
               </div>
             </div>
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold">Password reset complete</h2>
+              <h2 className="text-2xl font-bold">Parolni tiklash yakunlandi</h2>
               <p className="text-sm text-muted-foreground">
-                Your password has been successfully reset. Redirecting to login...
+                Sizning parolingiz muvaffaqiyatli tiklandi. Tizimga kirish sahifasiga yo'naltirilmoqda...
               </p>
             </div>
             <Button className="w-full" variant="outline" asChild>
-              <Link to="/login">Go to Login Now</Link>
+              <Link to="/login">Hozir tizimga kirish</Link>
             </Button>
           </CardContent>
         )}
         <CardFooter className="flex justify-center pb-8 p-1">
           <Link to="/login" className="text-sm text-muted-foreground hover:text-primary flex items-center transition-colors">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to log in
+            <ArrowLeft className="mr-2 h-4 w-4" /> Tizimga kirishga qaytish
           </Link>
         </CardFooter>
       </Card>

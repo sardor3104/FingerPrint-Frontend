@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import axiosInstance from '@/api/axiosInstance'
 
 const forgotPasswordSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.string().email('Elektron pochta manzili noto\'g\'ri'),
 })
 
 type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>
@@ -29,7 +29,7 @@ const ForgotPasswordPage = () => {
     try {
       await axiosInstance.post('/auth/forgot-password', data)
       setIsSuccess(true)
-      toast.success('Reset link sent! Please check your email.')
+      toast.success('Tiklash havolasi yuborildi! Iltimos, elektron pochtangizni tekshiring.')
     } catch (error: any) {
       console.error('Password reset request failed:', error)
       // Mock for development
@@ -55,9 +55,9 @@ const ForgotPasswordPage = () => {
                   <KeyRound className="h-10 w-10 text-primary" />
                 </div>
               </div>
-              <CardTitle className="text-3xl font-bold tracking-tight">Forgot password?</CardTitle>
+              <CardTitle className="text-3xl font-bold tracking-tight">Parolni unutdingizmi?</CardTitle>
               <CardDescription>
-                No worries, we'll send you reset instructions.
+                Xavotir olmang, biz sizga parolni tiklash bo'yicha ko'rsatmalarni yuboramiz.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -77,7 +77,7 @@ const ForgotPasswordPage = () => {
                 </div>
                 <Button className="w-full relative overflow-hidden group shadow-lg" type="submit" disabled={isLoading}>
                   {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  <span>Reset password</span>
+                  <span>Parolni tiklash</span>
                   <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </Button>
               </form>
@@ -91,16 +91,16 @@ const ForgotPasswordPage = () => {
               </div>
             </div>
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold">Check your email</h2>
+              <h2 className="text-2xl font-bold">Elektron pochtangizni tekshiring</h2>
               <p className="text-sm text-muted-foreground">
-                We've sent a password reset link to your email address.
+                Biz sizning elektron pochta manzilingizga parolni tiklash havolasini yubordik.
               </p>
             </div>
           </CardContent>
         )}
         <CardFooter className="flex justify-center pb-8">
           <Link to="/login" className="text-sm text-muted-foreground hover:text-primary flex items-center transition-colors">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to log in
+            <ArrowLeft className="mr-2 h-4 w-4" /> Tizimga kirishga qaytish
           </Link>
         </CardFooter>
       </Card>
